@@ -4,12 +4,11 @@ FROM httpd:latest
 RUN apt update && apt upgrade -y
 MAINTAINER coral <coralhl@gmail.com>
 #copy deb64 in directory
-COPY deb64.tar.gz /opt/install/deb64.tar.gz
+COPY setup-full-8.3.23.1865-x86_64.run /opt/install/setup.run
 
-#unpack archive in directory /opt/install
-RUN tar xzf /opt/install/deb64.tar.gz -C /opt/install \
-    #and run package install
-    && /opt/install/*.run --mode unattended --installer-language en --enable-components ws,ru,liberica_jre \
+#run package install
+RUN chmod +x /opt/install/setup.run \
+    && /opt/install/setup.run --mode unattended --installer-language en --enable-components ws,ru,liberica_jre \
     #remove dir after installation
     && rm -rf /opt/install/
 #copy in container httpd.conf

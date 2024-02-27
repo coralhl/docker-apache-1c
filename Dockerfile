@@ -26,4 +26,4 @@ COPY default_zup_ip.vrd /var/www/1c/zup_ip/default.vrd
 COPY default_zup_ooo.vrd /var/www/1c/zup_ooo/default.vrd
 
 #set file permissions
-RUN chown daemon:daemon -R /var/www/1c/
+RUN chown www-data:www-data -R /var/www/1c/
